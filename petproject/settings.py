@@ -1,9 +1,10 @@
 import os
 from pathlib import Path
+import dj_database_url  # <-- не забудь добавить в requirements.txt
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-@3!3&+6g+eg^!!%%8xyf3%th1%j5t(nww%jh7gh@gd=5ht!6zv')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-...')
 
 DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes']
 
@@ -21,7 +22,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Добавляем WhiteNoise сюда!
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Для статики в проде
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -49,15 +50,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'petproject.wsgi.application'
 
+# Используем DATABASE_URL, если он есть (на сервере), иначе локальные настройки
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'petproject-db',
-        'USER': 'petproject_db_tfdh_user',
-        'PASSWORD': '5NEQDxUMENTuBSrm46JvU3xDureIYOEw',
-        'HOST': 'dpg-d1secu7diees73fgpae0-a.render.com',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://petproject_db_tfdh_user:5NEQDxUMENTuBSrm46JvU3xDureIYOEw@dpg-d1secu7diees73fgpae0-a.render.com:5432/petproject_db_tfdh',
+        conn_max_age=600,
+        ssl_require=True  # Важно для Render
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -72,17 +71,16 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Статика
 STATIC_URL = '/static/'
-
-# Убери STATICFILES_DIRS, чтобы не конфликтовал с WhiteNoise и collectstatic
-# STATICFILES_DIRS = [BASE_DIR / "static"]
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-# Рекомендуемое хранилище статики для WhiteNoise
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Убираем STATICFILES_DIRS — он нужен только если у тебя есть отдельная папка static
+# STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Медиа
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
