@@ -3,13 +3,10 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Секретный ключ берём из переменных окружения, если нет — используем дефолтный (небезопасно для продакшена)
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-@3!3&+6g+eg^!!%%8xyf3%th1%j5t(nww%jh7gh@gd=5ht!6zv')
 
-# DEBUG тоже из переменных окружения (возьми 'True' или 'False' как строку и конвертируй в bool)
 DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes']
 
-# В ALLOWED_HOSTS добавь домен, который даст Render, плюс localhost для локальной разработки
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -24,6 +21,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Добавляем WhiteNoise сюда!
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -51,8 +49,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'petproject.wsgi.application'
 
-
-# Используем dj_database_url для подключения к базе из DATABASE_URL переменной окружения
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -64,22 +60,12 @@ DATABASES = {
     }
 }
 
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
-
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -88,11 +74,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [  # поправил название на правильное STATICFILES_DIRS (во множественном числе)
-    BASE_DIR / "static",
-]
+# Убери STATICFILES_DIRS, чтобы не конфликтовал с WhiteNoise и collectstatic
+# STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Рекомендуемое хранилище статики для WhiteNoise
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
