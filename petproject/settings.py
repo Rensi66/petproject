@@ -53,9 +53,9 @@ WSGI_APPLICATION = 'petproject.wsgi.application'
 # Используем DATABASE_URL, если он есть (на сервере), иначе локальные настройки
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://petproject_db_tfdh_user:5NEQDxUMENTuBSrm46JvU3xDureIYOEw@dpg-d1secu7diees73fgpae0-a.render.com:5432/petproject_db_tfdh',
+        default='postgresql://petproject_db_tfdh_user:5NEQDxUMENTuBSrm46JvU3xDureIYOEw@dpg-d1secu7diees73fgpae0-a.oregon-postgres.render.com/petproject_db_tfdh',
         conn_max_age=600,
-        ssl_require=True  # Важно для Render
+        ssl_require=True,
     )
 }
 
