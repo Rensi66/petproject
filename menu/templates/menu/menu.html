@@ -16,7 +16,11 @@
         {% for dish in dishes %}
           <div class="dish-item">
             <div class="dish-image-container">
-              <img src="{% static 'media/' %}{{ dish.photo.name }}" alt="{{ dish.dishes_name }}" class="dish-image" />
+              {% if dish.photo %}
+                <img src="{{ dish.photo.url }}" alt="{{ dish.dishes_name }}" class="dish-image" />
+              {% else %}
+                <img src="{% static 'images/no-image.png' %}" alt="No image" class="dish-image" />
+              {% endif %}
             </div>
             <h3>{{ dish.dishes_name }}</h3>
             <p>{{ dish.description }}</p>
