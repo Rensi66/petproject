@@ -16,7 +16,7 @@
         {% for dish in dishes %}
           <div class="dish-item">
             <div class="dish-image-container">
-              <img src="{{ dish.photo.url }}" alt="{{ dish.dishes_name }}" class="dish-image" />
+              <img src="{% static 'media/' %}{{ dish.photo.name }}" alt="{{ dish.dishes_name }}" class="dish-image" />
             </div>
             <h3>{{ dish.dishes_name }}</h3>
             <p>{{ dish.description }}</p>
