@@ -7,7 +7,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-@3!3&+6g+eg^!!%%8xyf3%th1%
 
 DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes']
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['petproject-o0um.onrender.com', 'www.petproject-o0um.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
