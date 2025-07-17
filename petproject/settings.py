@@ -55,9 +55,14 @@ WSGI_APPLICATION = 'petproject.wsgi.application'
 
 # Используем dj_database_url для подключения к базе из DATABASE_URL переменной окружения
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://django:1234@localhost:5432/django'
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'petproject-db',
+        'USER': 'petproject_db_tfdh_user',
+        'PASSWORD': '5NEQDxUMENTuBSrm46JvU3xDureIYOEw',
+        'HOST': 'dpg-d1secu7diees73fgpae0-a',
+        'PORT': '5432',
+    }
 }
 
 
