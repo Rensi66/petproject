@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-import dj_database_url  # Не забудь добавить в requirements.txt
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
