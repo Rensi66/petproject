@@ -76,8 +76,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# Убираем STATICFILES_DIRS — он нужен только если у тебя есть отдельная папка static
-# STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [
+    BASE_DIR / "media",  # Чтобы collectstatic её туда включал
+]
 
 # Медиа
 MEDIA_URL = '/media/'
