@@ -1,0 +1,323 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Georgia', serif;
+  background-color: #fff;
+  color: #000;
+  overflow-y: scroll;
+  line-height: 1.5;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #ebe9ec;
+  user-select: none;
+}
+.logo {
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #000;
+  cursor: default;
+}
+nav {
+  display: flex;
+  gap: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+}
+nav a {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+nav a:hover,
+nav a:focus {
+  color: #861d68;
+  outline: none;
+}
+
+.category-bar {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.category-item {
+  text-decoration: none;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  color: #4e342e;
+  padding: 8px 16px;
+  background-color: #f3e9e3;
+  border-radius: 20px;
+  border: 1px solid #d3c0b0;
+  transition: all 0.3s ease;
+}
+
+.category-item:hover {
+  background-color: #4e342e;
+  color: white;
+  border-color: #4e342e;
+}
+
+.dishes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.dishes-list {
+  max-height: 1100px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 10px;
+  scrollbar-width: thin;            /* Firefox */
+  scrollbar-color: #888 transparent; /* Firefox */
+}
+
+/* Chrome, Safari и Edge */
+.dishes-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dishes-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dishes-list::-webkit-scrollbar-thumb {
+  background-color: rgba(136, 136, 136, 0.7);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.3s ease;
+}
+
+.dishes-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.9);
+}
+
+.dish-item {
+  width: 280px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  background-color: transparent; /* Прозрачный фон */
+  text-align: center;
+  color: white; /* если у тебя тёмный фон сайта */
+}
+
+.dish-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.dish-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.callback-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 3rem 2rem;
+  text-align: center;
+  border-radius: 16px;
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.callback-section h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.callback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.callback-form input {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+}
+
+.callback-form input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #c3a060;
+}
+
+.callback-form button {
+  background-color: #c3a060;
+  color: white;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.callback-form button:hover {
+  background-color: #a88a51;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  max-width: 1200px;
+  margin: 40px auto 80px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  vertical-align: middle;
+  user-select: none;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(134, 29, 104, 0.7);
+  pointer-events: none;
+}
+.site-footer {
+  background-color: #333;      /* тёмный фон */
+  color: #fff;                 /* белый текст */
+  padding: 20px 0;
+  text-align: center;
+  position: relative;          /* можно сделать fixed, если нужно прилепить */
+  bottom: 0;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 30px;
+  user-select: none;
+  color: #fff;
+  z-index: 1;
+}
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.6);
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+.hero-content p {
+  max-width: 600px;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  font-weight: 500;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  line-height: 1.4;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.hero-content button {
+  background-color: #861d68;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 30px;
+  color: white;
+  font-size: 1.05rem;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background-color 0.3s ease;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.hero-content button:hover,
+.hero-content button:focus {
+  background-color: #a4328b;
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    padding: 15px 20px;
+  }
+  nav {
+    gap: 25px;
+    font-size: 0.9rem;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  .hero {
+    margin: 20px 20px 60px;
+  }
+  .hero-content button {
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 400px) {
+  nav {
+    gap: 15px;
+    font-size: 0.85rem;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content button {
+    padding: 9px 20px;
+    font-size: 0.9rem;
+  }
+}
+

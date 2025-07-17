@@ -1,0 +1,30 @@
+{% extends "menu/base.html" %}
+
+{% block extra_top_content %}
+    <div class="category-bar">
+      {% for c in cat %}
+        <a href="{% url 'chs_dsh' category=c.type %}" class="category-item">{{ c.type }}</a>
+      {% endfor %}
+    </div>
+{% endblock %}
+
+{% block content %}
+  <div class="hero-content">
+    {% if selected_category %}
+      <h2>Блюда из категории: {{ selected_category }}</h2>
+      <div class="dishes-list">
+        {% for dish in dishes %}
+          <div class="dish-item">
+            <div class="dish-image-container">
+              <img src="{{ dish.photo.url }}" alt="{{ dish.dishes_name }}" class="dish-image" />
+            </div>
+            <h3>{{ dish.dishes_name }}</h3>
+            <p>{{ dish.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <h1>Гастрономия начинается в Reness</h1>
+    {% endif %}
+  </div>
+{% endblock %}
