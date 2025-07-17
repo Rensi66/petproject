@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-@3!3&+6g+eg^!!%%8xyf3%th1%
 DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes']
 
 # В ALLOWED_HOSTS добавь домен, который даст Render, плюс localhost для локальной разработки
-ALLOWED_HOSTS = ['petproject.onrender.com']
+ALLOWED_HOSTS = ['petproject-o0um.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
