@@ -55,7 +55,7 @@ DATABASES = {
         'NAME': 'petproject-db',
         'USER': 'petproject_db_tfdh_user',
         'PASSWORD': '5NEQDxUMENTuBSrm46JvU3xDureIYOEw',
-        'HOST': 'dpg-d1secu7diees73fgpae0-a',
+        'HOST': 'dpg-d1secu7diees73fgpae0-a.render.com',
         'PORT': '5432',
     }
 }
